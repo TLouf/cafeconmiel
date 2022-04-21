@@ -108,5 +108,8 @@ def char_ngrams(filtered_words_count_by_doc, global_counts, min_n=1, max_n=1):
         ngram_doc_counts['count'].multiply(ngram_doc_counts['word_count'])
          .groupby(['meta_id', 'char_ngram'])
          .sum()
+         .rename('count')
+         .astype(int)
+         .to_frame()
     )
     return ngram_doc_counts
