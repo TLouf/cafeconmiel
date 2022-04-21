@@ -1,0 +1,20 @@
+name: cafeconmiel
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - ipykernel
+  - jupyterlab
+  - numpy
+  - pandas
+  - geopandas
+  - matplotlib
+  - seaborn
+  - requests
+  - beautifulsoup4
+  - osmnx
+  - scikit-learn
+  - pip:
+      - python-dotenv
