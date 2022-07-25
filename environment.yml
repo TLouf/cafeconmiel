@@ -6,6 +6,7 @@ dependencies:
   - python=3.9
   - pip
   - ipykernel
+  - ipywidgets
   - jupyterlab
   - numpy
   - pandas
@@ -14,7 +15,7 @@ dependencies:
   - seaborn
   - requests
   - beautifulsoup4
-  - osmnx
   - scikit-learn
+  - spacy
   - pip:
-      - python-dotenv
+    - -r requirements.txt
