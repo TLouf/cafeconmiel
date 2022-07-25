@@ -2,12 +2,12 @@ import re
 
 import pandas as pd
 
+WORD_PATT = re.compile(r'\b[^\W\d_]+?\b')
 
 def count_by_doc(doc_df):
-    word_patt = re.compile(r'\b[^\W\d_]+?\b')
     words_count_by_doc = (
-        doc_df.loc[doc_mask, 'text']
-         .str.findall(word_patt)
+        doc_df['text']
+         .str.findall(WORD_PATT)
          .explode()
          .rename('word')
          .to_frame()
@@ -18,6 +18,7 @@ def count_by_doc(doc_df):
     )
     words_count_by_doc['word_lower'] = (
         words_count_by_doc.index.get_level_values(level='word').str.lower()
+        
     )
     return words_count_by_doc
 

@@ -47,7 +47,6 @@ def extract_metadata(soup, meta_fields, locale_month_name_to_number):
     for i, elem in enumerate(soup.find_all(class_='cab')):
         field = meta_fields[i]
         text = elem.text
-        elems_in_field = field.split(' ')
         if field == 'date (place)':
             date, place = re.match(r'(.*) \((.*)\)', text).groups()
             metadata['place'] = place
@@ -67,3 +66,10 @@ def extract_metadata(soup, meta_fields, locale_month_name_to_number):
 
     metadata['revisors'] = [elem.text for elem in soup.find_all(class_='revisor')]
     return metadata
+
+
+def html_str_to_soup(s):
+    '''
+    Useful when reprocessing raw text because mistake was found.
+    '''
+    return BeautifulSoup(s, 'html.parser')

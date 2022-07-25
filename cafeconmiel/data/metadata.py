@@ -30,6 +30,6 @@ def normalize(df):
              .rename(columns={i: place_cols[i] for i in range(len(place_cols))})
         )
     for col in place_cols:
-        df[col] = df[col].str.strip(to_strip=' ?[]').str.title()
-        df.loc[df[col].str.len() == 1, col] = None
+        df[col] = df[col].fillna('').str.strip(to_strip=' ?[]').str.title()
+        df.loc[df[col].str.len() <= 1, col] = None
     return df
