@@ -1,0 +1,23 @@
+{
+    "corpusmallorca":
+        {
+            "base_url": "https://corpusmallorca.es",
+            "remote_doc_list": "buscar.php?&paleografica=on&critica=on&maxFiles=999999&nFilei=0&nFilef=999999&selDonde=0"
+        },
+    "corpuscodea":
+        {
+            "base_url": "https://corpuscodea.es/corpus",
+            "remote_doc_list": "consultas.php",
+            "local_doc_list": "docs.html"
+        },
+    "corpuscharta":
+        {
+            "base_url": "https://www.corpuscharta.es",
+            "remote_doc_list": "consultas.html",
+            "local_doc_list": "docs.html"
+        },
+    "postscriptum":
+        {
+            "base_url": "http://teitok.clul.ul.pt/postscriptum"
+        }
+}
