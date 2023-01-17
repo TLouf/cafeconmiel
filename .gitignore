@@ -90,3 +90,6 @@ data/**
 
 # Bash scripts
 *.sh
+
+reports/figures
+references
