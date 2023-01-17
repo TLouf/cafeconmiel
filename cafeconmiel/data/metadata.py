@@ -12,11 +12,6 @@ def normalize(df):
                 df.loc[~has_year, 'date'].str.extract(r'([0-9]{4})', expand=False)
                 .astype(float)
             )
-        # year_isnull = (~df['year'].str.isdigit()) | (df['year'] == '0')
-        # # approx year by mid century, not possible for codea because when year is null, century too.
-        # # df.loc[year_isnull, 'date'] = df.loc[year_isnull, 'century'].apply(lambda c: roman.fromRoman(c)*100+50)
-        # df.loc[year_isnull, 'year'] = None
-        # df['year'] = df['year'].astype(float)
     else:
         df['year'] = df['date'].str.extract(r'([0-9]{4})').astype(float)
     df['doc_type'] = df['doc_type'].str.lower().str.strip()
@@ -32,4 +27,10 @@ def normalize(df):
     for col in place_cols:
         df[col] = df[col].fillna('').str.strip(to_strip=' ?[]').str.title()
         df.loc[df[col].str.len() <= 1, col] = None
+
+    df = df.drop(
+        columns=['raw_text', 'unknown_id', 'revisors', 'century', 'nr_words', 'woman', 'context'],
+        errors='ignore',
+    )
+    
     return df
