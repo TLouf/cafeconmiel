@@ -18,7 +18,6 @@ def count_by_doc(doc_df):
     )
     words_count_by_doc['word_lower'] = (
         words_count_by_doc.index.get_level_values(level='word').str.lower()
-        
     )
     return words_count_by_doc
 
@@ -85,7 +84,7 @@ def char_ngrams(filtered_words_count_by_doc, global_counts, min_n=1, max_n=1):
         min_n += 1
     else:
         nchar_dict = {w: list() for w in kept_words}
-    
+
     for w in kept_words:
         for n in range(min_n, max_n+1):
             for i in range(len(w) - n + 1):
@@ -100,7 +99,7 @@ def char_ngrams(filtered_words_count_by_doc, global_counts, min_n=1, max_n=1):
     count_ncgrams_in_words = pd.Series(
         1, name='count', index=midx
     ).groupby(['word_lower', 'char_ngram']).sum()
-    # Join these counts with the word counts by document computed previously. 
+    # Join these counts with the word counts by document computed previously.
     ngram_doc_counts = (
         filtered_words_count_by_doc.rename(columns={'count': 'word_count'})
          .join(count_ncgrams_in_words)

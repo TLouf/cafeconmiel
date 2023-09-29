@@ -1,6 +1,7 @@
 import itertools
 import re
 
+
 def clean(text, space_after_newline=True):
     text = text.replace('>', '').replace('<', '').replace('|', '')
     # Remove (potentially nested) square and curly brackets' content.
