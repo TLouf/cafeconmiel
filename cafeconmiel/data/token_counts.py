@@ -54,13 +54,15 @@ def doc_counts_to_global(words_count_by_doc):
     return global_counts
 
 
-def word_mask(global_counts, min_df=1, max_df=1., upper_th=1.1):
+def word_mask(global_counts, min_df=1, max_df=1., upper_th=1.1, to_exclude=None):
     min_df_col = 'nr_docs' if isinstance(min_df, int) else 'doc_freq'
     max_df_col = 'nr_docs' if isinstance(max_df, int) else 'doc_freq'
+    exclusions_mask = True if to_exclude is None else ~global_counts.index.isin(to_exclude)
     global_counts['word_mask'] = (
         (global_counts['prop_upper'] < upper_th)
         & (global_counts[min_df_col] >= min_df)
         & (global_counts[max_df_col] <= max_df)
+        & exclusions_mask
     ).rename('word_mask')
     return global_counts
 
